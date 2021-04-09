@@ -1,0 +1,34 @@
+<form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'Create New Post' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <label>Title</label>
+          <input class="form-control" [(ngModel)]="postInput.title" name="title">
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" [(ngModel)]="postInput.description" name="description" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="postInput.categoryId" name="categoryId">
+            <option>Select</option>
+            <option [value]="cat.id" *ngFor="let cat of categories">{{cat?.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <abp-modal-footer [saveDisabled]="!createUserModal.form.valid" (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>
